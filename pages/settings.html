@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="app-page">
+    <aside class="sidebar">
+        <div class="sidebar__brand">🔐 SecurePass</div>
+        <nav class="sidebar__nav">
+            <a href="dashboard.html" class="sidebar__link">📊 Dashboard</a>
+            <a href="generator.html" class="sidebar__link">🎲 Generator</a>
+            <a href="vault.html"     class="sidebar__link">🗄️ Vault</a>
+            <a href="settings.html"  class="sidebar__link active">⚙️ Settings</a>
+        </nav>
+        <button class="sidebar__logout" id="btn-logout">↩ Logout</button>
+    </aside>
+    <main class="app-main">
+        <header class="app-header">
+            <h1 class="app-header__title">Settings</h1>
+        </header>
+        <div class="settings-layout">
+            <div class="settings-section">
+                <h2>Profile</h2>
+                <div class="form-group">
+                    <label>Display Name</label>
+                    <input type="text" id="profile-name" />
+                </div>
+                <button class="btn btn--primary" id="btn-save-name">Save Name</button>
+            </div>
+            <div class="settings-section">
+                <h2>Change Login Password</h2>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="new-login-password" placeholder="Min. 8 characters" />
+                </div>
+                <button class="btn btn--primary" id="btn-change-password">Update Password</button>
+            </div>
+            <div class="settings-section">
+                <h2>Export Vault</h2>
+                <p style="color:var(--color-text-2);font-size:.9rem;margin-bottom:16px">Downloads your vault as encrypted JSON. Keep this file safe.</p>
+                <button class="btn btn--ghost" id="btn-export">📤 Export Vault</button>
+            </div>
+            <div class="settings-section settings-danger">
+                <h2>⚠️ Danger Zone</h2>
+                <p style="color:var(--color-text-2);font-size:.9rem;margin-bottom:16px">Permanently deletes your account and all stored passwords. This cannot be undone.</p>
+                <button class="btn btn--danger" id="btn-delete-account">Delete Account</button>
+            </div>
+        </div>
+        <div class="toast hidden" id="toast"></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/settings-page.js"></script>
+</body>
+</html>

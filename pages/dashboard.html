@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="app-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar__brand">🔐 SecurePass</div>
+        <nav class="sidebar__nav">
+            <a href="dashboard.html"  class="sidebar__link active">📊 Dashboard</a>
+            <a href="generator.html"  class="sidebar__link">🎲 Generator</a>
+            <a href="vault.html"      class="sidebar__link">🗄️ Vault</a>
+            <a href="settings.html"   class="sidebar__link">⚙️ Settings</a>
+        </nav>
+        <button class="sidebar__logout" id="btn-logout">↩ Logout</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="app-main">
+        <header class="app-header">
+            <div>
+                <h1 class="app-header__title">Dashboard</h1>
+                <p class="app-header__sub">Welcome back, <span id="user-name">—</span></p>
+            </div>
+        </header>
+
+        <!-- STATS CARDS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__icon">🔑</div>
+                <div class="stat-card__value" id="stat-total">—</div>
+                <div class="stat-card__label">Passwords Saved</div>
+            </div>
+            <div class="stat-card stat-card--green">
+                <div class="stat-card__icon">💪</div>
+                <div class="stat-card__value" id="stat-strong">—</div>
+                <div class="stat-card__label">Strong Passwords</div>
+            </div>
+            <div class="stat-card stat-card--red">
+                <div class="stat-card__icon">⚠️</div>
+                <div class="stat-card__value" id="stat-weak">—</div>
+                <div class="stat-card__label">Weak Passwords</div>
+            </div>
+            <div class="stat-card stat-card--yellow">
+                <div class="stat-card__icon">⭐</div>
+                <div class="stat-card__value" id="stat-favorites">—</div>
+                <div class="stat-card__label">Favorites</div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+            <h2 class="section-label">Quick Actions</h2>
+            <div class="quick-actions__grid">
+                <a href="generator.html" class="quick-card">
+                    <span class="quick-card__icon">🎲</span>
+                    <span>Generate Password</span>
+                </a>
+                <a href="vault.html" class="quick-card">
+                    <span class="quick-card__icon">🗄️</span>
+                    <span>Open Vault</span>
+                </a>
+                <a href="settings.html" class="quick-card">
+                    <span class="quick-card__icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state hidden" id="empty-state">
+            <div class="empty-state__icon">🔐</div>
+            <h2>Your vault is empty</h2>
+            <p>Generate your first password to get started.</p>
+            <a href="generator.html" class="btn btn--primary">Generate Password</a>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/dashboard-page.js"></script>
+</body>
+</html>

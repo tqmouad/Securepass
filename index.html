@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecurePass Manager — Generate • Encrypt • Store</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav__brand">
+            <span class="nav__logo">🔐</span>
+            <span class="nav__name">SecurePass</span>
+        </div>
+        <div class="nav__actions">
+            <a href="pages/login.html" class="btn btn--ghost">Login</a>
+            <a href="pages/register.html" class="btn btn--primary">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__badge">AES-256 Client-Side Encryption</div>
+        <h1 class="hero__title">
+            Your passwords,<br />
+            <span class="gradient-text">encrypted before they leave your browser.</span>
+        </h1>
+        <p class="hero__subtitle">
+            SecurePass generates, encrypts, and stores your passwords securely.
+            Even if the database were compromised, your data remains unreadable —
+            because the key never leaves your device.
+        </p>
+        <div class="hero__cta">
+            <a href="pages/register.html" class="btn btn--primary btn--lg">Create Free Account</a>
+            <a href="#how-it-works" class="btn btn--ghost btn--lg">See How It Works</a>
+        </div>
+        <div class="hero__demo">
+    <div class="demo-card">
+
+        <div class="terminal">
+
+            <div class="terminal__header">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+
+                <span class="terminal__title">
+                    SecurePass Generator
+                </span>
+            </div>
+
+            <div class="terminal__body">
+
+                <div class="terminal__line">
+                    <span class="terminal__prompt">$</span>
+                    <span>generate --secure</span>
+                </div>
+
+                <div class="terminal__line">
+                    <span class="terminal__prompt">></span>
+
+                    <span id="hero-password"></span>
+
+                    <span class="terminal__cursor"></span>
+
+                </div>
+<div class="terminal__status">
+    <span id="terminal-status">Initializing...</span>
+</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Built with security as the architecture, not an afterthought.</h2>
+            <div class="features__grid">
+                <div class="feature-card">
+                    <div class="feature-card__icon">🔑</div>
+                    <h3>Separate Master Password</h3>
+                    <p>Your encryption key derives from a master password that never touches the server. Login credentials and vault keys are separate by design.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon">🛡️</div>
+                    <h3>AES-GCM Encryption</h3>
+                    <p>Every password is encrypted client-side using AES-256-GCM via the browser's Web Crypto API before transmission. The server stores only ciphertext.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon">🎲</div>
+                    <h3>Cryptographic Generation</h3>
+                    <p>Passwords are generated using <code>crypto.getRandomValues()</code> — never Math.random() — so every character is genuinely unpredictable.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon">🗄️</div>
+                    <h3>Row Level Security</h3>
+                    <p>Supabase enforces at the database engine level that users can only access their own rows — not application-layer filtering, actual Postgres policy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon">📊</div>
+                    <h3>Strength Analysis</h3>
+                    <p>Real entropy calculation — not a simple length check — gives you an honest assessment of how long your password would resist a brute-force attack.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon">📤</div>
+                    <h3>Portable Vault</h3>
+                    <p>Export your vault as encrypted JSON anytime. You own your data and can migrate or back it up without depending on this service to exist forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOW -->
+    <section class="flow">
+        <div class="container">
+            <h2 class="section-title">How your password stays safe</h2>
+            <div class="flow__steps">
+                <div class="flow__step">
+                    <div class="flow__step-num">1</div>
+                    <div class="flow__step-text">You generate a password in the browser</div>
+                </div>
+                <div class="flow__arrow">→</div>
+                <div class="flow__step">
+                    <div class="flow__step-num">2</div>
+                    <div class="flow__step-text">It's encrypted with your master password key before leaving your device</div>
+                </div>
+                <div class="flow__arrow">→</div>
+                <div class="flow__step">
+                    <div class="flow__step-num">3</div>
+                    <div class="flow__step-text">Only ciphertext is stored in the database</div>
+                </div>
+                <div class="flow__arrow">→</div>
+                <div class="flow__step">
+                    <div class="flow__step-num">4</div>
+                    <div class="flow__step-text">Decryption happens in your browser only when you request it</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>SecurePass Manager — Built with Supabase, Web Crypto API, and Vanilla JS</p>
+            <p class="footer__sub">A portfolio project demonstrating secure web application architecture.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/hero-animation.js"></script>
+</body>
+</html>

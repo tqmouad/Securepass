@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="auth-page">
+
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="auth-card__header">
+                <a href="../index.html" class="auth-card__back">← Back</a>
+                <div class="auth-card__logo">🔐</div>
+                <h1 class="auth-card__title">Welcome back</h1>
+                <p class="auth-card__subtitle">Log in to access your encrypted vault.</p>
+            </div>
+
+            <!-- Step 1: Login credentials -->
+            <div id="step-login" class="auth-step">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="ada@example.com" autocomplete="email" />
+                    <span class="field-error" id="email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Login Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Your login password" autocomplete="current-password" />
+                        <button type="button" class="input-toggle" data-target="password">👁</button>
+                    </div>
+                    <span class="field-error" id="password-error"></span>
+                </div>
+                <div class="form-row">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me" />
+                        <span>Remember me</span>
+                    </label>
+                    <a href="forgot-password.html" class="link--subtle">Forgot password?</a>
+                </div>
+                <button class="btn btn--primary btn--full" id="btn-login">Log In</button>
+            </div>
+
+            <!-- Step 2: Master password unlock -->
+            <div id="step-master" class="auth-step hidden">
+                <div class="master-info">
+                    <div class="master-info__icon">🔑</div>
+                    <h2>Enter Master Password</h2>
+                    <p>This unlocks your vault locally. It is never sent to the server.</p>
+                </div>
+                <div class="form-group">
+                    <label for="master-password">Master Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="master-password" placeholder="Your master password" />
+                        <button type="button" class="input-toggle" data-target="master-password">👁</button>
+                    </div>
+                    <span class="field-error" id="master-error"></span>
+                </div>
+                <button class="btn btn--primary btn--full" id="btn-unlock">Unlock Vault →</button>
+            </div>
+
+            <!-- Global error -->
+            <div class="auth-error hidden" id="auth-error"></div>
+
+            <p class="auth-card__footer">
+                No account yet? <a href="register.html">Create one</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/login.js"></script>
+</body>
+</html>

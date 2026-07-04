@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="app-page">
+    <aside class="sidebar">
+        <div class="sidebar__brand">🔐 SecurePass</div>
+        <nav class="sidebar__nav">
+            <a href="dashboard.html"  class="sidebar__link">📊 Dashboard</a>
+            <a href="generator.html"  class="sidebar__link active">🎲 Generator</a>
+            <a href="vault.html"      class="sidebar__link">🗄️ Vault</a>
+            <a href="settings.html"   class="sidebar__link">⚙️ Settings</a>
+        </nav>
+        <button class="sidebar__logout" id="btn-logout">↩ Logout</button>
+    </aside>
+
+    <main class="app-main">
+        <header class="app-header">
+            <h1 class="app-header__title">Password Generator</h1>
+            <p class="app-header__sub">Cryptographically secure • <code>crypto.getRandomValues()</code></p>
+        </header>
+
+        <div class="generator-layout">
+            <!-- OPTIONS -->
+            <div class="generator-options card">
+                <div class="form-group">
+                    <label for="platform">Platform</label>
+                    <select id="platform">
+                        <option value="">— Select platform —</option>
+                        <option>Instagram</option><option>Facebook</option><option>TikTok</option>
+                        <option>LinkedIn</option><option>GitHub</option><option>Amazon</option>
+                        <option>Bank</option><option>WiFi</option><option>Gmail</option>
+                        <option>Outlook</option><option>Gaming</option><option>Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username / Email</label>
+                    <input type="text" id="username" placeholder="your@email.com" />
+                </div>
+
+                <div class="form-group">
+                    <label>Length: <span id="length-display">16</span></label>
+                    <input type="range" id="length" min="8" max="64" value="16" class="range-input" />
+                    <div class="range-labels"><span>8</span><span>64</span></div>
+                </div>
+
+                <div class="options-grid">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-uppercase" checked />
+                        <span class="toggle-box"></span>
+                        Uppercase (A-Z)
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-lowercase" checked />
+                        <span class="toggle-box"></span>
+                        Lowercase (a-z)
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-numbers" checked />
+                        <span class="toggle-box"></span>
+                        Numbers (0-9)
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-symbols" checked />
+                        <span class="toggle-box"></span>
+                        Symbols (!@#...)
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-no-ambiguous" />
+                        <span class="toggle-box"></span>
+                        Exclude ambiguous (0,O,1,l)
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="opt-no-repeats" />
+                        <span class="toggle-box"></span>
+                        Avoid repeated chars
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes (optional)</label>
+                    <input type="text" id="notes" placeholder="e.g. Personal account" />
+                </div>
+
+                <div class="generator-actions">
+                    <button class="btn btn--primary btn--full" id="btn-generate">🎲 Generate</button>
+                </div>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="generator-output">
+                <div class="card password-display" id="output-panel">
+                    <div class="password-display__placeholder" id="output-placeholder">
+                        <div style="font-size:2.5rem;margin-bottom:12px">🎲</div>
+                        <p>Click Generate to create a password</p>
+                    </div>
+
+                    <div class="password-display__result hidden" id="output-result">
+                        <div class="password-display__value" id="generated-password"></div>
+
+                        <div class="strength-meter">
+                            <div class="strength-meter__bar">
+                                <div class="strength-meter__fill" id="strength-fill"></div>
+                            </div>
+                            <div class="strength-meter__labels">
+                                <span id="strength-label" class="badge"></span>
+                                <span id="entropy-label" class="entropy-text"></span>
+                            </div>
+                        </div>
+
+                        <div class="crack-time">
+                            🕐 Estimated crack time: <strong id="crack-time"></strong>
+                        </div>
+
+                        <div class="output-error hidden" id="output-error"></div>
+
+                        <div class="output-actions">
+                            <button class="btn btn--ghost" id="btn-copy">📋 Copy</button>
+                            <button class="btn btn--ghost" id="btn-regenerate">🔄 Regenerate</button>
+                            <button class="btn btn--primary" id="btn-save">💾 Save to Vault</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toast hidden" id="toast"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/generator-page.js"></script>
+</body>
+</html>

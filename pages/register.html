@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="auth-page">
+
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="auth-card__header">
+                <a href="../index.html" class="auth-card__back">← Back</a>
+                <div class="auth-card__logo">🔐</div>
+                <h1 class="auth-card__title">Create your account</h1>
+                <p class="auth-card__subtitle">Your vault is encrypted before it leaves your browser.</p>
+            </div>
+
+            <!-- STEP 1: Account details -->
+            <div id="step-account" class="auth-step">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Ada Lovelace" autocomplete="name" />
+                    <span class="field-error" id="name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="ada@example.com" autocomplete="email" />
+                    <span class="field-error" id="email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Login Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Min. 8 characters" autocomplete="new-password" />
+                        <button type="button" class="input-toggle" data-target="password">👁</button>
+                    </div>
+                    <span class="field-error" id="password-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Login Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm-password" placeholder="Repeat password" autocomplete="new-password" />
+                        <button type="button" class="input-toggle" data-target="confirm-password">👁</button>
+                    </div>
+                    <span class="field-error" id="confirm-password-error"></span>
+                </div>
+                <button class="btn btn--primary btn--full" id="btn-next">Continue →</button>
+            </div>
+
+            <!-- STEP 2: Master password setup -->
+            <div id="step-master" class="auth-step hidden">
+                <div class="master-info">
+                    <div class="master-info__icon">🔑</div>
+                    <h2>Set your Master Password</h2>
+                    <p>This password <strong>derives the encryption key</strong> for your vault. It is never sent to the server.</p>
+                    <div class="master-info__warning">
+                        ⚠️ If you lose this password, your vault entries cannot be recovered — by design. There is no reset.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="master-password">Master Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="master-password" placeholder="Something memorable, something strong" />
+                        <button type="button" class="input-toggle" data-target="master-password">👁</button>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-bar__fill" id="master-strength-fill"></div>
+                    </div>
+                    <span class="field-error" id="master-password-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-master">Confirm Master Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm-master" placeholder="Repeat master password" />
+                        <button type="button" class="input-toggle" data-target="confirm-master">👁</button>
+                    </div>
+                    <span class="field-error" id="confirm-master-error"></span>
+                </div>
+                <button class="btn btn--primary btn--full" id="btn-register">Create Account</button>
+                <button class="btn btn--ghost btn--full" id="btn-back">← Back</button>
+            </div>
+
+            <!-- STEP 3: Verify email -->
+            <div id="step-verify" class="auth-step hidden">
+                <div class="verify-state">
+                    <div class="verify-state__icon">📧</div>
+                    <h2>Check your email</h2>
+                    <p>We sent a verification link to <strong id="verify-email-display"></strong></p>
+                    <p class="verify-state__sub">Click the link in the email, then come back to log in.</p>
+                    <a href="login.html" class="btn btn--primary btn--full">Go to Login</a>
+                </div>
+            </div>
+
+            <!-- Global error -->
+            <div class="auth-error hidden" id="auth-error"></div>
+
+            <p class="auth-card__footer">
+                Already have an account? <a href="login.html">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vault — SecurePass</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="app-page">
+    <aside class="sidebar">
+        <div class="sidebar__brand">🔐 SecurePass</div>
+        <nav class="sidebar__nav">
+            <a href="dashboard.html" class="sidebar__link">📊 Dashboard</a>
+            <a href="generator.html" class="sidebar__link">🎲 Generator</a>
+            <a href="vault.html"     class="sidebar__link active">🗄️ Vault</a>
+            <a href="settings.html"  class="sidebar__link">⚙️ Settings</a>
+        </nav>
+        <button class="sidebar__logout" id="btn-logout">↩ Logout</button>
+    </aside>
+
+    <main class="app-main">
+        <header class="app-header">
+            <div>
+                <h1 class="app-header__title">Password Vault</h1>
+                <p class="app-header__sub">Passwords are decrypted only when you request it.</p>
+            </div>
+            <a href="generator.html" class="btn btn--primary">+ New Password</a>
+        </header>
+
+        <!-- FILTERS -->
+        <div class="vault-filters">
+            <input type="text" id="search" placeholder="🔍 Search platform or username…" class="vault-search" />
+            <div class="vault-filter-row">
+                <select id="filter-strength">
+                    <option value="">All strengths</option>
+                    <option value="expert">Expert</option>
+                    <option value="strong">Strong</option>
+                    <option value="medium">Medium</option>
+                    <option value="weak">Weak</option>
+                </select>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="filter-favorites" />
+                    <span>⭐ Favorites only</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- VAULT LIST -->
+        <div id="vault-list" class="vault-list"></div>
+
+        <!-- STATES -->
+        <div class="empty-state hidden" id="empty-state">
+            <div class="empty-state__icon">🗄️</div>
+            <h2>No passwords found</h2>
+            <p>Try a different search, or generate your first password.</p>
+            <a href="generator.html" class="btn btn--primary">Generate Password</a>
+        </div>
+
+        <div class="loading-state" id="loading-state">
+            <div class="spinner"></div>
+            <p>Loading vault…</p>
+        </div>
+
+        <div class="toast hidden" id="toast"></div>
+    </main>
+
+    <!-- DECRYPT MODAL -->
+    <div class="modal-overlay hidden" id="modal-overlay">
+        <div class="modal">
+            <div class="modal__header">
+                <h2 id="modal-title">View Password</h2>
+                <button class="modal__close" id="modal-close">✕</button>
+            </div>
+            <div class="modal__body">
+                <div class="form-group">
+                    <label>Decrypted Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="modal-password" readonly />
+                        <button type="button" class="input-toggle" data-target="modal-password">👁</button>
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--ghost" id="modal-copy">📋 Copy</button>
+                    <button class="btn btn--ghost btn--sm modal__close-btn" id="modal-close-btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="../assets/js/vault-page.js"></script>
+</body>
+</html>
